@@ -1,0 +1,160 @@
+{
+	"info": {
+		"_postman_id": "e586da30-bfb2-47e1-9db7-6e0b1d1f2722",
+		"name": "Test_Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Post Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "33e1edf0-9277-40b5-b42c-7650587c55f3",
+						"exec": [
+							"var jsondata=JSON.parse(responseBody);\r",
+							"postman.setGlobalVariable(\"sid\",jsondata.id)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 1,\r\n  \"first_name\": \"sample string 2\",\r\n  \"middle_name\": \"sample string 3\",\r\n  \"last_name\": \"sample string 4\",\r\n  \"date_of_birth\": \"sample string 5\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{source_url}}/api/studentsDetails/",
+					"host": [
+						"{{source_url}}"
+					],
+					"path": [
+						"api",
+						"studentsDetails",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "07cdb8a6-2066-4660-a6a7-d3bc3fa32788",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": {{sid}},\r\n  \"first_name\": \"{{fname}}\",\r\n  \"middle_name\": \"{{lname}}\",\r\n  \"last_name\": \"sample string 4\",\r\n  \"date_of_birth\": \"sample string 5\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{source_url}}/api/studentsDetails/{{sid}}",
+					"host": [
+						"{{source_url}}"
+					],
+					"path": [
+						"api",
+						"studentsDetails",
+						"{{sid}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET details",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b5a6a6b1-c8ea-45d5-8f8f-9ae652247fe1",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{source_url}}/api/studentsDetails/{{sid}}",
+					"host": [
+						"{{source_url}}"
+					],
+					"path": [
+						"api",
+						"studentsDetails",
+						"{{sid}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "ef1c32b9-2af3-4ed2-9318-ab4a50825601",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "cafdbd30-49ec-4684-98aa-97279374eb24",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "62e50f2b-ec70-4a57-9001-5d805fbcef05",
+			"key": "fname",
+			"value": "Naresh",
+			"disabled": true
+		},
+		{
+			"id": "882039a2-fa02-4b32-a082-3b5a57cd213c",
+			"key": "lname",
+			"value": "Kumar",
+			"disabled": true
+		}
+	],
+	"protocolProfileBehavior": {}
+}
