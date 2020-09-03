@@ -4,6 +4,7 @@ postman_tests:
   stage: test
   image:
     name: postman/newman_alpine33
+    endpoint: [""]
 script:
   - newman --version
   - npm install -g newman-reporter-html
