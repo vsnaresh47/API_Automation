@@ -1,0 +1,15 @@
+stages:
+  - test
+postman_tests:
+  stage: test
+  image:
+    name: postman/newman_alpine33
+script:
+  - newman --version
+  - npm install -g newman-reporter-html
+  - newman run Test_Collection.postman_collection.json -d TestCollectiondata.csv --reporters cli,html --reporter -html -export report.html
+  artifacts:
+    paths:
+      - report.html
+
+  
